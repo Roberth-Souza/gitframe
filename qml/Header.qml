@@ -103,7 +103,7 @@ Card {
             // them is the counters' own separator, at the height of a line.
             //
             // The location is as wide as it needs to be and the bio takes
-            // whatever is left: it is 120 characters on this account and is
+            // whatever is left: a bio can run to 160 characters and is
             // always the line that gets cut, so it is the one that must not
             // be sized by hand.
             Item {

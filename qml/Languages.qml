@@ -8,9 +8,8 @@ import "."
 //
 // One bar per row rather than the stacked bar this card started with. That
 // swap is what cutting the list to four rows bought: nine rows left 95px of
-// track and this account's 1% tail drew thinner than a pixel, while four
-// leave exactly 100 - so a fill is the percentage in pixels and nothing can
-// round away.
+// track and a 1% tail drew thinner than a pixel, while four leave exactly
+// 100 - so a fill is the percentage in pixels and nothing can round away.
 Card {
     id: root
 

@@ -1,21 +1,20 @@
 import QtQuick
 import "."
 
-// The content column of the Repositories screen: the list card on the left,
-// at the share of the column it has in the reference mock, and the detail
-// panel filling the rest. The panel takes no focus and holds no cursor - it
-// draws whichever row is marked, so it follows the list rather than being
-// navigated.
+// The content column of the Repositories screen: the list card on the left
+// and the fixed-width detail panel on the right. The panel takes no focus
+// and holds no cursor - it draws whichever row is marked, so it follows the
+// list rather than being navigated.
 //
 // Above the rows sits the search band - the query field and the visibility
 // filter - and it costs exactly one row: 40 + 2 * 12 = 64, so the card's body
 // is still 64 + 9 * 64 = 640 and the viewport stays a multiple of the row.
-// Nine of the eleven repositories are on screen instead of ten.
+// Nine rows are on screen instead of ten.
 //
 // The rows are the whole account - the query over-fetches - and they are
 // read-only: Enter or a click hands the repository's URL to the browser, the
-// same way the Overview's avatar opens the profile. The mock's `>` is not
-// drawn: it promises a panel that does not exist yet.
+// same way the Overview's avatar opens the profile. No `>` is drawn: it
+// would promise a screen to go to, and the panel is already on screen.
 //
 // The field reads one word as syntax: `@stars` orders the rows by star count
 // and is what the screen opens with. It is an ordering, not a filter - it
@@ -118,7 +117,7 @@ Item {
         if (!root.sorted)
             return kept;
         // The tie-break is explicit because `Array.sort` is not guaranteed
-        // stable here and 8 of the 11 repositories have no stars at all:
+        // stable here and most repositories have no stars at all:
         // without it they would come back in an arbitrary order instead of
         // the API's, newest push first.
         return kept
@@ -383,9 +382,7 @@ Item {
                     color: Config.border
                 }
 
-                // The book, or the padlock on a private repository. Four of
-                // the eleven repositories on this account are private, so the
-                // swap carries real information.
+                // The book, or the padlock on a private repository.
                 Text {
                     id: mark
 
@@ -435,8 +432,8 @@ Item {
                         }
 
                         // Stars and forks, each drawn only when it is not
-                        // zero: on this account almost every repository has
-                        // both at zero, and a wall of zeros says nothing.
+                        // zero: most repositories have both at zero, and a
+                        // wall of zeros says nothing.
                         Row {
                             id: counters
 

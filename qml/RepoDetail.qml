@@ -162,7 +162,7 @@ Card {
         }
 
         // -- header: name, description, URL --------------------------------
-        // Fixed height whatever the repository carries. Four of the eleven
+        // Fixed height whatever the repository carries. Many repositories
         // have no description, and a block that grew and shrank as the cursor
         // walked the list would drag every block under it with it.
         Item {
@@ -207,9 +207,8 @@ Card {
                     elide: Text.ElideRight
                 }
 
-                // Rounded, like the search band's two controls: it is the
-                // mock's one badge and a square box that size reads as a
-                // second card corner.
+                // Rounded, like the search band's two controls: a square
+                // box that size reads as a second card corner.
                 Rectangle {
                     id: badge
 
@@ -280,9 +279,9 @@ Card {
         Rule {}
 
         // -- stars, commits, pull requests ---------------------------------
-        // Not the mock's stars / forks / watchers: on this account forks are
-        // zero on all eleven repositories and watchers on ten of them, while
-        // commits are never zero and pull requests are real on three.
+        // Not stars / forks / watchers: on a personal account forks and
+        // watchers are nearly always zero, while commits never are and pull
+        // requests often are not.
         Item {
             width: panel.width
             height: Config.detailCounterHeight
@@ -343,8 +342,8 @@ Card {
 
             // The slice's shade: the dominant language takes the lightest
             // grey of the heatmap's ramp and `Other`, always last, the
-            // darkest. This is where the mock's coloured dots would have
-            // gone; the palette is greys only.
+            // darkest: the palette is greys only, so shade stands in for
+            // the usual coloured dots.
             function shade(index) {
                 return Config.levels[Math.max(1, Config.levels.length - 1 - index)];
             }

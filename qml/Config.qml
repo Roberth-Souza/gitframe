@@ -13,7 +13,7 @@ QtObject {
     readonly property color fgDim: "#5d5d5d"
     // The active sidebar tab's fill: a mid grey, not off white, so the one lit
     // block on screen does not out-shout `fgActive`, which is what actually
-    // marks a value. Measured off the reference, not chosen.
+    // marks a value.
     readonly property color activeFill: "#9d9d9d"
     // Drawn on top of `activeFill`: the active sidebar tab inverts, so its
     // label and glyph go black. Solid, unlike `bg`, which is 90% alpha.
@@ -78,9 +78,9 @@ QtObject {
     readonly property string glyphStar: ""
     readonly property string glyphFork: ""
     // The detail panel: the three counters, the URL line and the two block
-    // headings. Forks and watchers are not among them - both are zero on
-    // every repository on this account, and a counter that is always zero is
-    // a dead counter. Commits and pull requests are not.
+    // headings. Forks and watchers are not among them - on a personal
+    // account both are nearly always zero, and a counter that is always zero
+    // is a dead counter. Commits and pull requests are not.
     readonly property string glyphCommit: ""
     readonly property string glyphPullRequest: ""
     readonly property string glyphContributors: ""
@@ -203,8 +203,8 @@ QtObject {
     // every repository instead of one.
     //
     // It is one bar per row here and one stacked bar there, and the reason is
-    // width. Nine rows in a 220 column left 95px of track, where this
-    // account's 1% tail drew thinner than a pixel. Four rows leave 100 - and
+    // width. Nine rows in a 220 column left 95px of track, where a 1% tail
+    // drew thinner than a pixel. Four rows leave 100 - and
     // at 100 the fill in pixels is the percentage itself, so no slice can
     // round away.
     readonly property int languageBarWidth: 100
@@ -221,12 +221,12 @@ QtObject {
     // fixed so the numbers line up under each other.
     readonly property int languagePercentWidth: 27
 
-    // The Repositories screen. The list takes the share of the content column
-    // it has in the reference mock and the detail panel takes the rest.
+    // The Repositories screen. The detail panel has a fixed width and the
+    // list takes the rest of the content column.
     readonly property int repoDetailWidth: 480
     readonly property int repoListWidth: contentWidth - blockGap - repoDetailWidth
     // The card's body is 640 and the whole-rows scroll rule needs it to be a
-    // multiple of the row, which 64 is and the mock's 72 is not.
+    // multiple of the row, which 64 is.
     readonly property int repoRowHeight: 64
     // The search band costs exactly one row, which is the whole price of the
     // field: 40 + 2 * 12 = 64, so 64 + 9 * 64 = 640 is still the card's body
@@ -243,8 +243,8 @@ QtObject {
     // The detail panel beside the list. Its card is the same 704 tall, so
     // everything inside it is a budget and the two row counts are the only
     // slack: 16 + 68 + 25 + 44 + 25 + 66 + 25 + 232 + 25 + 162 + 16 = 704.
-    // `commitRowHeight` is 40 and not the mock's roomier row for exactly that
-    // reason - at 44 the contributors lose their fifth row.
+    // `commitRowHeight` is 40 for exactly that reason - at 44 the
+    // contributors lose their fifth row.
     readonly property int detailRuleGap: 12
     readonly property int detailRuleHeight: 2 * detailRuleGap + 1
     // Name 28, description 16, URL 16, and 4 between them. Fixed even when
@@ -280,9 +280,9 @@ QtObject {
                                                     + detailContributorRows
                                                     * contributorRowHeight
     // The face on a Recent commits row. It is 28 in a 40px row - the ~0.7
-    // of the row the reference crop measures - and not the 24 it was: at 24
-    // the face was centred on a two-line row while the headline sat on the
-    // first line alone, 8px above it, so it read as hanging under the text.
+    // of the row - and not the 24 it was: at 24 the face was centred on a
+    // two-line row while the headline sat on the first line alone, 8px above
+    // it, so it read as hanging under the text.
     // At 28 it spans both lines and the two centres are the same point.
     readonly property int detailAvatarSize: 28
     readonly property int detailBadgeHeight: 20

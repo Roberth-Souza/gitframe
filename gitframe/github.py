@@ -92,13 +92,13 @@ query($from: DateTime!, $to: DateTime!, $repos: Int!, $commits: Int!,
 # `COMMIT_LIMIT` over-fetch on purpose - merge commits and other people's
 # commits are dropped client-side.
 #
-# 100 is GraphQL's own ceiling for `first`, not a number chosen for this
-# account, which has 11. It is the largest list the screen can hold without
-# paginating, and asking for it is free: `first` is a ceiling, so an account
-# below it returns exactly the same payload. Measured against the live API,
+# 100 is GraphQL's own ceiling for `first`, not a number chosen for any one
+# account. It is the largest list the screen can hold without paginating, and
+# asking for it is free: `first` is a ceiling, so an account below it returns
+# exactly the same payload. Measured against the live API,
 # 30 vs 100: 78 KB both, 2.06s vs 2.04s median of 4, and the cost goes 1 -> 2
 # points of the 5000 per hour. An account past 100 is truncated and would need
-# `pageInfo.endCursor` and a request per extra 100; not built, not needed here.
+# `pageInfo.endCursor` and a request per extra 100; not built.
 REPO_LIMIT = 100
 COMMIT_LIMIT = 20
 # Recent Activity draws this many rows; see `activityRows` in qml/Config.qml.

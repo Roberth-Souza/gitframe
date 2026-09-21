@@ -30,10 +30,9 @@ def _today() -> date:
     return datetime.now().astimezone().date()
 
 
-# Emoji, variation selectors and the zero-width joiner. A bio carries them -
-# this account's has two - and the font does not, so the system falls back to
-# a colour emoji font and paints them in colour, in a window whose palette is
-# greys only. They are dropped rather than recoloured: there is no greyscale
+# Emoji, variation selectors and the zero-width joiner. A bio can carry them
+# and the font does not, so the system falls back to a colour emoji font and
+# paints them in colour, in a window whose palette is greys only. They are dropped rather than recoloured: there is no greyscale
 # version of them to draw.
 _PICTOGRAPHS = re.compile("[\u2600-\u27bf\ufe00-\ufe0f\u200d\U0001f000-\U0001faff]")
 
@@ -41,9 +40,8 @@ _PICTOGRAPHS = re.compile("[\u2600-\u27bf\ufe00-\ufe0f\u200d\U0001f000-\U0001faf
 def _one_line(text: str) -> str:
     """A bio as the header draws it: one line, no emoji.
 
-    The API returns the field with the author's own line breaks in it - a
-    literal `\\r\\n` on this account - and the header has one elided line to
-    put it on.
+    The API returns the field with the author's own line breaks in it, and
+    the header has one elided line to put it on.
     """
     return " ".join(_PICTOGRAPHS.sub("", text).split())
 
