@@ -17,9 +17,9 @@ black-and-white overlay. Press a key, take a look, press it again.
 
 <div align="center">
 
-<!-- screenshot: Overview -->
+![gitframe Overview](https://github.com/user-attachments/assets/59c2c8da-270f-40f8-b685-8dc1d27eaf7b)
 
-<!-- screenshot: Repositories -->
+![gitframe Repositories](https://github.com/user-attachments/assets/b80de078-a859-4c28-b0c7-915143df4c51)
 
 </div>
 
