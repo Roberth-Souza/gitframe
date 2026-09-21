@@ -9,7 +9,8 @@ import "."
 // The card holds two of the Overview column's keyboard regions, stacked the
 // way they are drawn: the year control on top and the grid below it.
 // `Overview.qml` calls the move functions below; leaving the year upwards is
-// its business, since the avatar above belongs to another card.
+// its business, since the avatar above belongs to another card, and so is
+// leaving the grid downwards, onto Recent Activity.
 Card {
     id: root
 
@@ -134,21 +135,24 @@ Card {
         return true;
     }
 
+    // False when the cursor would step below its week: the grid's bottom
+    // edge, where Recent Activity takes the cursor over.
     function moveVertical(delta) {
         if (root.region < 0 || !root.cursorCell) {
             if (delta > 0 && root.cursorIso !== "")
                 root.region = 0;
-            return;
+            return true;
         }
         const week = root.weeks[root.cursorCol];
         const row = root.cursorRow + delta;
         if (row < week[0].row) {
             root.region = -1;
-            return;
+            return true;
         }
         if (row > week[week.length - 1].row)
-            return;
+            return false;
         root.setCursor(root.cursorCol, row);
+        return true;
     }
 
     // -- year --------------------------------------------------------------

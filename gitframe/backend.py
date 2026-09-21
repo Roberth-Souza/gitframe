@@ -95,6 +95,7 @@ def _rows(snapshot: Snapshot) -> list[dict[str, str]]:
             "sha": commit.short_oid,
             "repo": commit.repository,
             "when": github.relative_time(commit.committed_at),
+            "url": commit.url,
         }
         for commit in snapshot.commits
     ]
