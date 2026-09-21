@@ -25,16 +25,21 @@ black-and-white overlay. Press a key, take a look, press it again.
 
 ---
 
-## Why this exists
+## 🙃 Why this exists
 
 I wanted a fast way to look at my git history without opening a browser, so I
 built this small app with [Claude Code](https://claude.com/claude-code). The
 result turned out too nice not to share.
 
-## Features
+## ✨ Features
 
 - **Zero configuration**: it uses your existing `gh` login. No token to paste,
   no config file.
+- **Summoned, not running**: press `Super + G` and it appears over whatever
+  you are doing. Take a look, and it is gone: `Q`, a click outside or opening
+  a link closes it. Nothing stays in the background.
+- **Interactive**: `Enter` on a repository, a pinned repository or your avatar
+  opens it on GitHub. Everything on screen is reachable from the keyboard.
 - **Overview**: profile header, a full-year contribution heatmap you can step
   through year by year, stat tiles for today, current streak, best streak and
   this year, and your five most recent commits.
@@ -49,10 +54,8 @@ result turned out too nice not to share.
   refreshed in the background. If you are offline, the cached data stays on
   screen.
 - **Read-only**: it never writes anything to GitHub.
-- **On demand**: it runs only while it is open. Opening a link, pressing `Q`
-  or clicking outside the window closes it.
 
-## Supported compositors
+## 🖥️ Supported compositors
 
 gitframe draws itself as a `wlr-layer-shell` overlay. It has only been tested
 on **Hyprland**, but it should work on other compositors that implement the
@@ -60,7 +63,7 @@ protocol, such as Sway, river or niri.
 
 It does not run on GNOME or X11.
 
-## Installation
+## 📦 Installation
 
 > [!IMPORTANT]
 > **Install PySide6 from your distribution, not pip.** `layer-shell-qt` is a
@@ -100,7 +103,7 @@ cd gitframe
 python main.py
 ```
 
-## Setup (Hyprland)
+## ⚙️ Setup (Hyprland)
 
 **Keybind.** Launching it again while it is open closes it, so one key toggles
 it:
@@ -124,7 +127,7 @@ hl.layer_rule({
 })
 ```
 
-## Usage
+## ⌨️ Usage
 
 | Key | Action |
 | --- | --- |
@@ -138,7 +141,7 @@ hl.layer_rule({
 In the heatmap, `h`/`l` move between days. On the year control, they step the
 year.
 
-### Sorting
+### ⭐ Sorting
 
 The search field opens with `@stars` already typed, so the list is **sorted by
 stars**. Repositories with no stars stay at the bottom, most recently pushed
@@ -150,12 +153,12 @@ most recently pushed order.
 `@stars` also works together with a search: `@stars wall` keeps only the
 repositories matching `wall` and sorts them by stars.
 
-## Privacy
+## 🔒 Privacy
 
 gitframe never sees your token: every request goes through `gh`. Your data is
 cached in `~/.cache/gitframe/`, readable only by your user. Delete that folder
 to clear it.
 
-## License
+## 📄 License
 
 [GPL-3.0](LICENSE)
