@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.ruff_cache/
+.pytest_cache/
+
+# Design reference, kept out of the repository
+reference/
+
+# The fixtures are real API responses: they carry the names, descriptions and
+# commit headlines of the private repositories.
+tests/
