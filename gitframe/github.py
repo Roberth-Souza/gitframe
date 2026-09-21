@@ -205,7 +205,12 @@ def _history(repo: dict[str, Any]) -> dict[str, Any]:
 
 
 def _repo_commits(repo: dict[str, Any]) -> list[CommitEntry]:
-    """Every commit the history carried, in the order the API returned it."""
+    """Every commit the history carried, in the order the API returned it.
+
+    The commit's page is built from the repository's URL rather than asked
+    for, so a snapshot cached before the rows were links still opens them.
+    """
+    repo_url = repo.get("url") or ""
     entries: list[CommitEntry] = []
     for commit in _history(repo).get("nodes") or []:
         author = (commit.get("author") or {}).get("user") or {}
@@ -217,6 +222,7 @@ def _repo_commits(repo: dict[str, Any]) -> list[CommitEntry]:
                 committed_at=commit["committedDate"],
                 author_login=author.get("login") or "",
                 author_avatar_url=author.get("avatarUrl") or "",
+                url=f"{repo_url}/commit/{commit['oid']}" if repo_url else "",
             )
         )
     return entries

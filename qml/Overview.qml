@@ -3,8 +3,8 @@ import "."
 
 // The content column of the Overview screen: the four blocks stacked with the
 // same gap. It also owns its own chain of keyboard regions - the avatar on
-// top, then the year control, then the grid - the way the heatmap owns the two
-// it draws. `Main.qml` still handles every key; this only exposes the moves.
+// top, then the year control, then the grid, then Recent Activity - the way
+// the heatmap owns the two it draws. `Main.qml` still handles every key; this only exposes the moves.
 Item {
     id: root
 
@@ -16,18 +16,21 @@ Item {
     // The topmost region. It starts on the avatar, so the first `l` out of the
     // sidebar lands there; after that the position is simply kept.
     property bool onAvatar: true
+    // The bottom region, below the grid.
+    property bool onActivity: false
 
     // Part of the interface `Main.qml` calls on whichever column is on show:
     // a key takes the highlight back from the pointer.
     function releaseMouse() {
         heatmap.mouseLeads = false;
+        activity.mouseLeads = false;
     }
 
     // Returns false when the cursor is already at this column's left edge and
     // the key belongs to the sidebar instead.
     function moveHorizontal(delta) {
-        if (root.onAvatar)
-            return delta > 0;  // nothing sits right of the avatar either
+        if (root.onAvatar || root.onActivity)
+            return delta > 0;  // nothing sits beside either of them
         return heatmap.moveHorizontal(delta);
     }
 
@@ -37,16 +40,24 @@ Item {
                 root.onAvatar = false;
             return;
         }
+        if (root.onActivity) {
+            if (!activity.moveVertical(delta))
+                root.onActivity = false;
+            return;
+        }
         if (delta < 0 && heatmap.region < 0) {
             root.onAvatar = true;
             return;
         }
-        heatmap.moveVertical(delta);
+        if (!heatmap.moveVertical(delta) && activity.rows.length > 0)
+            root.onActivity = true;
     }
 
     function activate() {
         if (root.onAvatar)
             header.open();
+        else if (root.onActivity)
+            activity.activate();
     }
 
     Column {
@@ -77,12 +88,15 @@ Item {
 
                     width: Config.heatmapCardWidth
                     api: root.api
-                    focused: root.focused && !root.onAvatar
+                    focused: root.focused && !root.onAvatar && !root.onActivity
                 }
 
                 ActivityList {
+                    id: activity
+
                     width: Config.heatmapCardWidth
                     api: root.api
+                    focused: root.focused && root.onActivity
                 }
             }
 

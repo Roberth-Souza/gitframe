@@ -64,6 +64,7 @@ class CommitEntry:
     committed_at: str
     author_login: str = ""
     author_avatar_url: str = ""
+    url: str = ""
 
     @property
     def short_oid(self) -> str:
