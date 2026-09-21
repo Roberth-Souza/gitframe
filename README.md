@@ -5,7 +5,7 @@
 **A quick, keyboard-first look at your own GitHub history, right on your desktop.**
 
 Contribution graph, streaks, recent commits and your repositories in one
-black-and-white overlay. Press a key, take a look, press it again.
+black-and-white overlay. Press a key, take a look, press it again, and it's gone
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 ![Toolkit](https://img.shields.io/badge/Qt-PySide6-41cd52)
@@ -41,8 +41,8 @@ result turned out too nice not to share.
 - **Interactive**: `Enter` on a repository, a pinned repository or your avatar
   opens it on GitHub. Everything on screen is reachable from the keyboard.
 - **Overview**: profile header, a full-year contribution heatmap you can step
-  through year by year, stat tiles for today, current streak, best streak and
-  this year, and your five most recent commits.
+  through year by year, stat tiles for current streak, busiest day, active
+  days and weekly average, and your Recent Activity.
 - **Repositories**: every repository you own, with a detail panel for the one
   under the cursor. It shows stars, commits, pull requests, the language
   breakdown, recent commits and top contributors.
@@ -158,6 +158,11 @@ repositories matching `wall` and sorts them by stars.
 gitframe never sees your token: every request goes through `gh`. Your data is
 cached in `~/.cache/gitframe/`, readable only by your user. Delete that folder
 to clear it.
+
+## Roadmap
+
+- **Starred tab**: a sidebar tab listing the repositories you have starred.
+  One keypress sends you to your browser.
 
 ## 📄 License
 
